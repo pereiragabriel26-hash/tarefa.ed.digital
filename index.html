@@ -1,27 +1,855 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>parque barigui</title>
+
+    <title>Shopping Palladium</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            color: #d4af37;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        .menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            background:
+                linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.65)),
+                url("https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&w=2000&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 100px 20px 40px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            letter-spacing: 8px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .3s;
+            display: inline-block;
+        }
+
+        .btn-gold {
+            background: #d4af37;
+            color: #111;
+        }
+
+        .btn-gold:hover {
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #111;
+        }
+
+        /* GERAL */
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #777;
+        }
+
+        /* SOBRE */
+        .about {
+            background: white;
+        }
+
+        .about-container {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 400px;
+            border-radius: 20px;
+            background:
+                url("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1000&q=80")
+                center/cover;
+        }
+
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* CARDS */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 22px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .card-content p {
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .card-button {
+            margin-top: 18px;
+            display: inline-block;
+            color: #b18b16;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* GASTRONOMIA */
+        .food {
+            background: #111;
+            color: white;
+        }
+
+        .food .section-title p {
+            color: #aaa;
+        }
+
+        .food .card {
+            background: #1d1d1d;
+            color: white;
+        }
+
+        .food .card-content p {
+            color: #aaa;
+        }
+
+        /* CINEMA */
+        .cinema {
+            background: #eee;
+        }
+
+        .movie-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .age {
+            background: #d4af37;
+            color: #111;
+            padding: 5px 9px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* SERVIÇOS */
+        .services {
+            background: white;
+        }
+
+        .service-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            padding: 30px;
+            text-align: center;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            transition: .3s;
+        }
+
+        .service:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+
+        .service .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .service h3 {
+            margin-bottom: 8px;
+        }
+
+        .service p {
+            color: #777;
+        }
+
+        /* LOCALIZAÇÃO */
+        .location {
+            background: #f1f1f1;
+        }
+
+        .location-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .location-box {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+        }
+
+        .location-box h3 {
+            margin-bottom: 20px;
+        }
+
+        .location-box p {
+            margin-bottom: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .map {
+            min-height: 300px;
+            border-radius: 18px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #777;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0b0b0b;
+            color: white;
+            padding: 50px 7% 25px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        footer h3 {
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+
+        footer p,
+        footer a {
+            color: #aaa;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        footer a:hover {
+            color: #d4af37;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 800px) {
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: #111;
+                flex-direction: column;
+                padding: 25px;
+                text-align: center;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .about-container,
+            .location-container {
+                grid-template-columns: 1fr;
+            }
+
+            .cards,
+            .service-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            section {
+                padding: 70px 5%;
+            }
+
+            .cards,
+            .service-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                letter-spacing: 3px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
+
 <body>
+
+    <!-- HEADER -->
     <header>
-        <h1>shopping palladium</h1> 
-        <p> vamo ver tudo sobre o shopping palladium</p>
+        <div class="logo">PALLADIUM</div>
+
+        <div class="menu" onclick="toggleMenu()">☰</div>
+
+        <nav id="nav">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#lojas">Lojas</a>
+            <a href="#gastronomia">Gastronomia</a>
+            <a href="#cinema">Cinema</a>
+            <a href="#eventos">Eventos</a>
+            <a href="#contato">Contato</a>
+        </nav>
     </header>
-    <main>
-        <section>
-            <h2>sejam bem vindos ao meu site</h2>
-            <p>o shopping palladium e  um dos maiores shopping de curitiba </p>
-<nav>
 
-    <a href="#sobre">o shopping palladium e um dos maiores pontos de curitiba</a>
-    <a href="#historia">O Shopping Palladium Curitiba foi inaugurado em 27 de maio de 2008 pelo Grupo Tacla, transformando a paisagem urbana do bairro Portão</a>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>PALLADIUM</h1>
 
-</nav>
-        </section>
-    </main>
-    
+            <p>
+                Um lugar para viver experiências, encontrar pessoas
+                e aproveitar o melhor de Curitiba.
+            </p>
+
+            <div class="buttons">
+                <a href="#lojas" class="btn btn-gold">
+                    Conheça nossas lojas
+                </a>
+
+                <a href="#contato" class="btn btn-outline">
+                    Como chegar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section class="about" id="sobre">
+
+        <div class="section-title">
+            <h2>Uma experiência completa</h2>
+            <p>Compras, gastronomia, lazer e entretenimento.</p>
+        </div>
+
+        <div class="about-container">
+
+            <div class="about-image"></div>
+
+            <div class="about-text">
+                <h2>Shopping Palladium</h2>
+
+                <p>
+                    Um espaço pensado para proporcionar experiências
+                    especiais para toda a família.
+                </p>
+
+                <p>
+                    Descubra lojas, restaurantes, entretenimento,
+                    cinema e eventos em um ambiente moderno e confortável.
+                </p>
+
+                <a href="#servicos" class="btn btn-gold">
+                    Conheça nossos serviços
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LOJAS -->
+    <section id="lojas">
+
+        <div class="section-title">
+            <h2>Encontre tudo o que procura</h2>
+            <p>Explore nossas principais categorias.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>Moda</h3>
+                    <p>Estilo e tendências para todos os momentos.</p>
+                    <a href="#" class="card-button">Explorar →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>Tecnologia</h3>
+                    <p>Produtos e novidades para deixar sua vida mais conectada.</p>
+                    <a href="#" class="card-button">Explorar →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=800&q=80">
+                <div class="card-content">
+                    <h3>Beleza</h3>
+                    <p>Cuidados, cosméticos e experiências de beleza.</p>
+                    <a href="#" class="card-button">Explorar →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- GASTRONOMIA -->
+    <section class="food" id="gastronomia">
+
+        <div class="section-title">
+            <h2>Gastronomia</h2>
+            <p>Sabores para todos os gostos.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Restaurantes</h3>
+                    <p>Experiências gastronômicas para aproveitar com amigos e família.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Cafés</h3>
+                    <p>Um café especial para acompanhar seus melhores momentos.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Sobremesas</h3>
+                    <p>Doces e sabores para deixar sua visita ainda melhor.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CINEMA -->
+    <section id="cinema" class="cinema">
+
+        <div class="section-title">
+            <h2>Cinema</h2>
+            <p>Escolha seu filme e aproveite a sessão.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>A Grande Aventura</h3>
+
+                    <div class="movie-info">
+                        <span>2h 10min</span>
+                        <span class="age">12</span>
+                    </div>
+
+                    <a href="#" class="card-button">Ver horários →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Horizonte</h3>
+
+                    <div class="movie-info">
+                        <span>1h 55min</span>
+                        <span class="age">10</span>
+                    </div>
+
+                    <a href="#" class="card-button">Ver horários →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Além do Tempo</h3>
+
+                    <div class="movie-info">
+                        <span>2h 05min</span>
+                        <span class="age">14</span>
+                    </div>
+
+                    <a href="#" class="card-button">Ver horários →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EVENTOS -->
+    <section id="eventos">
+
+        <div class="section-title">
+            <h2>Eventos & novidades</h2>
+            <p>Confira o que está acontecendo no Palladium.</p>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Eventos especiais</h3>
+                    <p>Programações e experiências especiais para toda a família.</p>
+                    <a href="#" class="card-button">Saiba mais →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Ofertas</h3>
+                    <p>Confira promoções e oportunidades especiais.</p>
+                    <a href="#" class="card-button">Ver ofertas →</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=80">
+
+                <div class="card-content">
+                    <h3>Novidades</h3>
+                    <p>Fique por dentro das novidades do shopping.</p>
+                    <a href="#" class="card-button">Confira →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="services" id="servicos">
+
+        <div class="section-title">
+            <h2>Serviços</h2>
+            <p>Tudo para tornar sua experiência mais confortável.</p>
+        </div>
+
+        <div class="service-grid">
+
+            <div class="service">
+                <div class="icon">🚗</div>
+                <h3>Estacionamento</h3>
+                <p>Facilidade e comodidade para sua visita.</p>
+            </div>
+
+            <div class="service">
+                <div class="icon">📶</div>
+                <h3>Wi-Fi</h3>
+                <p>Conectividade durante sua experiência.</p>
+            </div>
+
+            <div class="service">
+                <div class="icon">♿</div>
+                <h3>Acessibilidade</h3>
+                <p>Ambiente preparado para todos.</p>
+            </div>
+
+            <div class="service">
+                <div class="icon">👨‍👩‍👧</div>
+                <h3>Espaço Família</h3>
+                <p>Conforto para famílias e crianças.</p>
+            </div>
+
+            <div class="service">
+                <div class="icon">🐶</div>
+                <h3>Pet Friendly</h3>
+                <p>Seu companheiro também é bem-vindo.</p>
+            </div>
+
+            <div class="service">
+                <div class="icon">ℹ️</div>
+                <h3>Atendimento</h3>
+                <p>Estamos preparados para ajudar.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section class="location" id="contato">
+
+        <div class="section-title">
+            <h2>Como chegar</h2>
+            <p>Planeje sua visita ao Shopping Palladium.</p>
+        </div>
+
+        <div class="location-container">
+
+            <div class="location-box">
+
+                <h3>📍 Localização</h3>
+
+                <p>
+                    Shopping Palladium<br>
+                    Curitiba - Paraná
+                </p>
+
+                <h3>🕐 Horários</h3>
+
+                <p>
+                    Consulte os horários oficiais
+                    antes de sua visita.
+                </p>
+
+                <a href="#" class="btn btn-gold">
+                    Traçar rota
+                </a>
+
+            </div>
+
+            <div class="map">
+                📍 MAPA
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+                <div class="logo">PALLADIUM</div>
+
+                <p>
+                    Um espaço para compras, gastronomia,
+                    lazer e experiências.
+                </p>
+            </div>
+
+            <div>
+                <h3>Links</h3>
+                <p><a href="#inicio">Início</a></p>
+                <p><a href="#lojas">Lojas</a></p>
+                <p><a href="#cinema">Cinema</a></p>
+                <p><a href="#eventos">Eventos</a></p>
+            </div>
+
+            <div>
+                <h3>Contato</h3>
+                <p>Curitiba - PR</p>
+                <p>Atendimento</p>
+                <p>Redes sociais</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Palladium — Site demonstrativo.
+        </div>
+
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById("nav");
+            nav.classList.toggle("active");
+        }
+
+        // Fecha o menu ao clicar em um link no celular
+        document.querySelectorAll("nav a").forEach(link => {
+            link.addEventListener("click", () => {
+                document.getElementById("nav").classList.remove("active");
+            });
+        });
+    </script>
+
 </body>
 </html>
+```
