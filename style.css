@@ -1,2 +1,118 @@
+:root{
+    --cor-fundo: #443209;
+    --cor-texto: #9c7e45;
+    --cor-principal: #ffe600;
+    --cor-secundaria: rgb(247, 247, 247);
+    --cor-hover:#e2a412;
+    --cor-superficie:#4d3807;
+    --cor-card:#83600e;
+    --cor-legenda:#6e4f04;
+    --cor-clara:#eed69d;
+    --cor-rodape:#58503c;
 
+
+}
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, sans-serif;
+    margin: 0;
+
+}
+header {
+    background-color: var(--cor-fundo);
+    color: var(--cor-clara);
+    text-align: center;
+    padding: 30px;
+}
+
+h1{
+    font-size: 36px
+    
+}
+
+h2 {
+    color: var(--cor-principal);
+
+}
  
+p{
+    font-size: 18px;
+    line-height: 1,6;
+
+}
+
+nav{
+    margin-top: 20px;
+
+}
+
+nav a {
+    color: var(--cor-clara);
+    text-decoration: none;
+    background-color: var(--cor-secundaria);
+    margin: 5px;
+    display: inline-block;
+
+}
+
+nav a:hover {
+    background-color: var(--cor-hover);
+
+}
+
+main {
+    width: 80%;
+    margin: auto;
+
+}
+
+section {
+    background-color: var(--cor-superficie);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 12px;
+
+}
+
+img {
+    width: 100px;
+    max-width: 600px;
+    display: block;
+    margin: auto;
+    border-radius: 12px;
+
+}
+
+figcaption {
+    text-align: center;
+    font-size: 14px;
+    color: var(--cor-legenda);
+    margin-top: 8px;
+
+}
+
+.card {
+    background-color: var(--cor-card);
+    padding: 15px;
+    margin: 15px 0;
+    border-left: 6px solid var(--cor-principal);
+    border-radius: 10px;
+    flex:1 1 300px;
+
+
+}
+
+.card h3 {
+    margin-top: 0;
+
+}
+
+footer {
+    background-color: var(--cor-rodape);
+    color: var(--cor-clara);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
